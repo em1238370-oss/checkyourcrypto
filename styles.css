@@ -23,9 +23,9 @@ body::before {
     content: '';
     position: fixed;
     inset: -40px;
-    background: radial-gradient(circle at 20% 20%, rgba(255, 184, 0, 0.12), transparent 60%),
-        radial-gradient(circle at 80% 10%, rgba(141, 31, 170, 0.25), transparent 55%),
-        radial-gradient(circle at 30% 85%, rgba(245, 158, 11, 0.1), transparent 55%),
+    background: radial-gradient(circle at 20% 20%, rgba(120, 0, 72, 0.45), transparent 60%),
+        radial-gradient(circle at 80% 10%, rgba(141, 31, 170, 0.4), transparent 55%),
+        radial-gradient(circle at 30% 85%, rgba(112, 0, 92, 0.35), transparent 55%),
         linear-gradient(160deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.8));
     pointer-events: none;
     z-index: 0;
@@ -50,7 +50,6 @@ body::after {
     z-index: 1;
 }
 
-/* Hero: одно слово, янтарное свечение — прошлая версия дизайна */
 .hero {
     display: flex;
     align-items: center;
@@ -58,44 +57,6 @@ body::after {
     text-align: center;
     padding: 60px 20px;
     min-height: 100vh;
-}
-
-.hero-word {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(80px, 18vw, 175px);
-    font-weight: 700;
-    line-height: 1.2;
-    color: #FFB800;
-    text-shadow: 0 0 20px rgba(255, 184, 0, 0.6),
-        0 0 40px rgba(245, 158, 11, 0.4),
-        0 0 60px rgba(255, 184, 0, 0.3);
-    animation: amberGlow 4s ease-in-out infinite;
-    opacity: 0;
-    animation: heroFadeIn 0.7s ease-out 0.1s forwards, amberGlow 4s ease-in-out 0.8s infinite;
-}
-
-@keyframes heroFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes amberGlow {
-    0%, 100% {
-        text-shadow: 0 0 20px rgba(255, 184, 0, 0.6),
-            0 0 40px rgba(245, 158, 11, 0.4),
-            0 0 60px rgba(255, 184, 0, 0.3);
-    }
-    50% {
-        text-shadow: 0 0 30px rgba(255, 184, 0, 0.9),
-            0 0 55px rgba(245, 158, 11, 0.6),
-            0 0 80px rgba(255, 184, 0, 0.4);
-    }
 }
 
 .scroll-section {
@@ -115,33 +76,31 @@ body::after {
     font-weight: 700;
 }
 
-.floating-text {
+/* Hero: одно слово, янтарное свечение */
+.hero-word {
     font-family: 'Raleway', sans-serif;
-    font-size: 175px;
-    color: #FFFFFF;
+    font-size: clamp(80px, 18vw, 175px);
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.2;
     text-align: center;
-    max-width: 90vw;
-    margin: 0 auto;
-    animation: float 6s ease-in-out infinite;
+    color: #fff;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(255, 191, 0, 0.6),
+                 0 0 40px rgba(255, 191, 0, 0.4),
+                 0 0 60px rgba(255, 191, 0, 0.3);
+    animation: amberGlow 3s ease-in-out infinite;
 }
 
-.floating-text span {
-    font-style: italic;
-}
-
-@keyframes float {
-    0% {
-        transform: translate(0, 0);
+@keyframes amberGlow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 191, 0, 0.6),
+                     0 0 40px rgba(255, 191, 0, 0.4),
+                     0 0 60px rgba(255, 191, 0, 0.3);
     }
-
     50% {
-        transform: translate(20px, -20px);
-    }
-
-    100% {
-        transform: translate(0, 0);
+        text-shadow: 0 0 30px rgba(255, 191, 0, 0.9),
+                     0 0 60px rgba(255, 191, 0, 0.6),
+                     0 0 90px rgba(255, 191, 0, 0.4);
     }
 }
 
@@ -525,227 +484,191 @@ html {
 }
 
 .main-content {
-    padding: 60px 20px 120px;
-    max-width: 720px;
-    margin: 0 auto;
+    padding: 40px 20px 80px;
 }
 
-/* Checker sections — гладкий стиль, янтарный акцент */
+/* Блоки проверки — гладкий стиль */
 .checker-section {
-    margin-bottom: 56px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: sectionFadeIn 0.6s ease-out forwards;
+    max-width: 640px;
+    margin: 0 auto 56px;
+    padding: 32px 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 191, 0, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.checker-section:nth-child(1) { animation-delay: 0.1s; }
-.checker-section:nth-child(2) { animation-delay: 0.25s; }
-.checker-section:nth-child(3) { animation-delay: 0.4s; }
-.checker-section:nth-child(4) { animation-delay: 0.55s; }
-
-@keyframes sectionFadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.checker-section:hover {
+    border-color: rgba(255, 191, 0, 0.25);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
-.checker-section-title {
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.95);
+.checker-section .section-header {
     margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #fff;
 }
 
-.checker-section-title .title-note {
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1rem;
-}
-
-.checker-section-sub {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 12px;
-}
-
-/* ТОП-3 карточки */
 .top-list {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
 }
 
 .top-item {
     display: flex;
     align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    padding: 18px 22px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    gap: 12px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .top-item:hover {
-    border-color: rgba(255, 184, 0, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.35);
+    transform: translateX(4px);
 }
 
 .top-name {
-    font-weight: 600;
-    color: #FFFFFF;
     flex: 1;
-    min-width: 0;
+    color: #fff;
+    font-weight: 600;
 }
 
-.top-value {
+.top-sum {
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.95rem;
 }
 
 .top-status {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    padding: 6px 12px;
+    padding: 4px 10px;
     border-radius: 8px;
 }
 
 .status-active {
-    background: rgba(34, 197, 94, 0.2);
-    color: rgba(134, 239, 172, 0.95);
-    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.15);
 }
 
 .status-deleted,
 .status-blocked {
-    background: rgba(239, 68, 68, 0.15);
-    color: rgba(254, 202, 202, 0.95);
-    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.15);
 }
 
-/* Поля и кнопки проверки */
-.check-channel-row {
+.checker-hint {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.checker-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
 }
 
 .checker-input {
     flex: 1;
-    min-width: 180px;
+    min-width: 200px;
     padding: 14px 18px;
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    color: #FFFFFF;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .checker-input::placeholder {
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .checker-input:focus {
-    border-color: rgba(255, 184, 0, 0.5);
-    box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.15);
+    outline: none;
+    border-color: rgba(255, 191, 0, 0.5);
+    box-shadow: 0 0 0 3px rgba(255, 191, 0, 0.15);
 }
 
-.checker-hint {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 20px;
-    margin-top: 4px;
-}
-
-.checker-btn {
+.btn-primary {
     padding: 14px 24px;
     font-size: 1rem;
     font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    color: #0a0a0a;
-    background: linear-gradient(135deg, #FFB800, #F59E0B);
+    color: #000;
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
     border: none;
     border-radius: 12px;
     cursor: pointer;
+    box-shadow: 0 4px 20px rgba(255, 193, 7, 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    white-space: nowrap;
 }
 
-.checker-btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 24px rgba(255, 184, 0, 0.35);
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(255, 193, 7, 0.45);
 }
 
-.checker-btn:active {
-    transform: scale(1.01);
+.btn-primary:active {
+    transform: translateY(0);
 }
 
-.checker-btn-submit {
-    margin-top: 8px;
-    padding: 16px 28px;
-    width: 100%;
-    max-width: 280px;
+.btn-file {
+    padding: 14px 24px;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.check-by-screen {
-    margin-top: 24px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+.btn-file:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 191, 0, 0.3);
 }
 
 .checker-file {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 200px;
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
 }
 
-.checker-file::file-selector-button {
-    padding: 10px 16px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    color: #0a0a0a;
-    background: rgba(255, 184, 0, 0.9);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.checker-file::file-selector-button:hover {
-    background: #FFB800;
-}
-
-.file-label {
-    font-size: 0.9rem;
+.file-name {
     color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
 }
 
-/* Форма «Сообщить о разводе» */
-.report-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.report-form .form-group {
+    margin-bottom: 20px;
 }
 
-.form-row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.report-form input {
+    padding: 14px 18px;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.form-row label {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
+.report-form input:focus {
+    outline: none;
+    border-color: rgba(255, 191, 0, 0.5);
+    box-shadow: 0 0 0 3px rgba(255, 191, 0, 0.15);
+}
+
+.btn-full {
+    width: 100%;
+    margin-top: 8px;
 }
 
 .crypto-form {
@@ -823,29 +746,12 @@ html {
         padding: 40px 16px;
     }
 
-    .hero-word {
-        font-size: clamp(56px, 16vw, 100px);
+    .hero h1 {
+        font-size: 26px;
     }
 
     .section-header h2 {
         font-size: 32px;
-    }
-
-    .main-content {
-        padding: 40px 16px 80px;
-    }
-
-    .check-channel-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .checker-input {
-        min-width: 0;
-    }
-
-    .checker-btn {
-        width: 100%;
     }
 
     .subscription-banner {

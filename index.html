@@ -12,63 +12,61 @@
 </head>
 <body>
     <div class="page">
-        <!-- Hero: одно слово, янтарное свечение — прошлая версия дизайна -->
-        <section class="hero" aria-label="Главный заголовок">
+        <section class="hero">
             <h1 class="hero-word">Проверь</h1>
         </section>
-        <main class="main-content" id="mainContent">
-            <section class="checker-section top-section" id="topToday">
-                <h2 class="checker-section-title">ТОП-3 сегодня</h2>
-                <ul class="top-list" aria-label="Топ-3 канала за сегодня">
+        <main class="main-content scroll-section" id="mainContent">
+            <section class="checker-section">
+                <h2 class="section-header">ТОП-3 сегодня</h2>
+                <ul class="top-list" aria-label="Топ каналов">
                     <li class="top-item">
                         <span class="top-name">@TONPumpElite</span>
-                        <span class="top-value">→ 2.1 млн₽</span>
+                        <span class="top-sum">2.1млн₽</span>
                         <span class="top-status status-deleted">Удалён</span>
                     </li>
                     <li class="top-item">
-                        <span class="top-name">BTC Курс миллионера</span>
-                        <span class="top-value">→ 847к₽</span>
+                        <span class="top-name">ВТС Курс миллионера</span>
+                        <span class="top-sum">847к₽</span>
                         <span class="top-status status-active">Активен</span>
                     </li>
                     <li class="top-item">
                         <span class="top-name">crypto-fast.pro</span>
-                        <span class="top-value">→ 673к₽</span>
+                        <span class="top-sum">673к₽</span>
                         <span class="top-status status-blocked">Блок</span>
                     </li>
                 </ul>
             </section>
-            <section class="checker-section" id="checkChannel">
-                <h2 class="checker-section-title">Проверить канал</h2>
-                <div class="check-channel-row">
-                    <input type="text" class="checker-input" id="channelInput" placeholder="@username / ссылка на канал или обменник" aria-label="Ссылка на канал или обменник">
-                    <button type="button" class="checker-btn" id="checkChannelBtn">Проверить</button>
+            <section class="checker-section">
+                <h2 class="section-header">Проверить канал</h2>
+                <p class="checker-hint">@username / ссылка на канал или обменник</p>
+                <div class="checker-row">
+                    <input type="text" class="checker-input" placeholder="@channel, t.me/..., или ссылка на обменник" aria-label="Канал или ссылка">
+                    <button type="button" class="btn-primary">Проверить</button>
                 </div>
-                <p class="checker-hint">@channel, t.me/..., или ссылка на обменник</p>
-                <div class="check-by-screen">
-                    <p class="checker-section-sub">или загрузите скрин</p>
-                    <div class="check-channel-row">
-                        <input type="file" class="checker-file" id="screenFile" accept="image/*" aria-label="Выберите скриншот">
-                        <span class="file-label" id="fileLabel">Файл не выбран</span>
-                        <button type="button" class="checker-btn" id="checkByScreenBtn">Проверить по скрину</button>
-                    </div>
+                <p class="checker-hint">или загрузите скрин</p>
+                <div class="checker-row">
+                    <input type="file" class="checker-file" id="screenshotInput" accept="image/*" aria-label="Выберите скриншот">
+                    <label for="screenshotInput" class="btn-file">Выберите файл</label>
+                    <span class="file-name">Файл не выбран</span>
+                    <button type="button" class="btn-primary">Проверить по скрину</button>
                 </div>
             </section>
-            <section class="checker-section" id="reportScam">
-                <h2 class="checker-section-title">Сообщить о разводе <span class="title-note">→ добавим за 30 мин</span></h2>
-                <form class="report-form" id="reportForm">
-                    <div class="form-row">
+            <section class="checker-section">
+                <h2 class="section-header">Сообщить о разводе → добавим за 30 мин</h2>
+                <form class="report-form">
+                    <div class="form-group">
                         <label for="reportChannel">Канал / ссылка</label>
-                        <input type="text" class="checker-input" id="reportChannel" name="channel" placeholder="@channel или ссылка" aria-label="Канал или ссылка">
+                        <input type="text" id="reportChannel" placeholder="@channel или ссылка">
                     </div>
-                    <div class="form-row">
-                        <label for="reportAmount">Сумма ₽</label>
-                        <input type="number" class="checker-input" id="reportAmount" name="amount" value="0" min="0" step="1" aria-label="Сумма в рублях">
+                    <div class="form-group">
+                        <label for="reportSum">Сумма ₽</label>
+                        <input type="number" id="reportSum" value="0" min="0">
                     </div>
-                    <div class="form-row">
+                    <div class="form-group">
                         <label for="reportFrom">От кого (необязательно)</label>
-                        <input type="text" class="checker-input" id="reportFrom" name="from" placeholder="Имя или аноним" aria-label="От кого">
+                        <input type="text" id="reportFrom" placeholder="Имя или аноним">
                     </div>
-                    <button type="submit" class="checker-btn checker-btn-submit">Отправить</button>
+                    <button type="submit" class="btn-primary btn-full">Отправить</button>
                 </form>
             </section>
         </main>
