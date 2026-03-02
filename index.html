@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check your crypto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page">
+        <!-- Hero: одно слово, янтарное свечение — прошлая версия дизайна -->
+        <section class="hero" aria-label="Главный заголовок">
+            <h1 class="hero-word">Проверь</h1>
+        </section>
+        <main class="main-content" id="mainContent">
+            <section class="checker-section top-section" id="topToday">
+                <h2 class="checker-section-title">ТОП-3 сегодня</h2>
+                <ul class="top-list" aria-label="Топ-3 канала за сегодня">
+                    <li class="top-item">
+                        <span class="top-name">@TONPumpElite</span>
+                        <span class="top-value">→ 2.1 млн₽</span>
+                        <span class="top-status status-deleted">Удалён</span>
+                    </li>
+                    <li class="top-item">
+                        <span class="top-name">BTC Курс миллионера</span>
+                        <span class="top-value">→ 847к₽</span>
+                        <span class="top-status status-active">Активен</span>
+                    </li>
+                    <li class="top-item">
+                        <span class="top-name">crypto-fast.pro</span>
+                        <span class="top-value">→ 673к₽</span>
+                        <span class="top-status status-blocked">Блок</span>
+                    </li>
+                </ul>
+            </section>
+            <section class="checker-section" id="checkChannel">
+                <h2 class="checker-section-title">Проверить канал</h2>
+                <div class="check-channel-row">
+                    <input type="text" class="checker-input" id="channelInput" placeholder="@username / ссылка на канал или обменник" aria-label="Ссылка на канал или обменник">
+                    <button type="button" class="checker-btn" id="checkChannelBtn">Проверить</button>
+                </div>
+                <p class="checker-hint">@channel, t.me/..., или ссылка на обменник</p>
+                <div class="check-by-screen">
+                    <p class="checker-section-sub">или загрузите скрин</p>
+                    <div class="check-channel-row">
+                        <input type="file" class="checker-file" id="screenFile" accept="image/*" aria-label="Выберите скриншот">
+                        <span class="file-label" id="fileLabel">Файл не выбран</span>
+                        <button type="button" class="checker-btn" id="checkByScreenBtn">Проверить по скрину</button>
+                    </div>
+                </div>
+            </section>
+            <section class="checker-section" id="reportScam">
+                <h2 class="checker-section-title">Сообщить о разводе <span class="title-note">→ добавим за 30 мин</span></h2>
+                <form class="report-form" id="reportForm">
+                    <div class="form-row">
+                        <label for="reportChannel">Канал / ссылка</label>
+                        <input type="text" class="checker-input" id="reportChannel" name="channel" placeholder="@channel или ссылка" aria-label="Канал или ссылка">
+                    </div>
+                    <div class="form-row">
+                        <label for="reportAmount">Сумма ₽</label>
+                        <input type="number" class="checker-input" id="reportAmount" name="amount" value="0" min="0" step="1" aria-label="Сумма в рублях">
+                    </div>
+                    <div class="form-row">
+                        <label for="reportFrom">От кого (необязательно)</label>
+                        <input type="text" class="checker-input" id="reportFrom" name="from" placeholder="Имя или аноним" aria-label="От кого">
+                    </div>
+                    <button type="submit" class="checker-btn checker-btn-submit">Отправить</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <div class="payment-backdrop hidden" id="paymentBackdrop"></div>
+    <div class="payment-modal hidden" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="paymentModalTitle">
+        <button class="payment-close" id="paymentCloseButton" aria-label="Закрыть окно">&times;</button>
+        <h3 id="paymentModalTitle">Оплата подписки USDT</h3>
+        <p class="payment-description">
+            Переведите указанную сумму на адрес ниже. Подписка активируется автоматически после подтверждения транзакции сетью.
+        </p>
+        <dl class="payment-details">
+            <div>
+                <dt>Сумма</dt>
+                <dd id="paymentAmount">—</dd>
+            </div>
+            <div>
+                <dt>Адрес</dt>
+                <dd id="paymentAddress">
+                    <span class="payment-address-text">—</span>
+                    <button class="copy-btn" id="copyAddressButton" type="button">Скопировать</button>
+                </dd>
+            </div>
+            <div>
+                <dt>Счёт</dt>
+                <dd id="paymentInvoiceId">—</dd>
+            </div>
+        </dl>
+        <a class="payment-link" id="paymentLink" href="#" target="_blank" rel="noopener noreferrer">
+            Открыть страницу оплаты
+        </a>
+        <p class="payment-note">
+            После успешной оплаты статус обновится автоматически. Если окно закрыто случайно, можно создать новый счёт.
+        </p>
+    </div>
+    <div class="subscription-overlay hidden" id="subscriptionOverlay">
+        <div class="subscription-overlay-content">
+            <p class="subscription-overlay-text">Subscribe to continue using this amazing bot for $10/month</p>
+            <button class="subscription-overlay-btn" id="subscriptionOverlayButton" type="button">
+                Subscribe for $10/month
+            </button>
+        </div>
+    </div>
+    <div class="chat-widget">
+        <button class="chat-button" id="chatButton" aria-label="Open chat">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+            </svg>
+        </button>
+        <div class="chat-container" id="chatContainer" aria-live="polite">
+            <div class="chat-header">
+                <h3>
+                    <span class="status-dot" aria-hidden="true"></span>
+                    Crypto AI Assistant
+                </h3>
+                <button class="close-chat" id="closeChat" aria-label="Close chat">&times;</button>
+            </div>
+            <div class="chat-subscription-section" id="subscriptionSection">
+                <div class="chat-timer-display" id="timerDisplay">24:00</div>
+            </div>
+            <div class="chat-expired-overlay hidden" id="chatExpiredOverlay">
+                <div class="chat-expired-content">
+                    <p class="chat-expired-text">Subscribe to continue using this amazing bot for $10/month</p>
+                    <div class="payment-method-buttons">
+                        <button class="chat-expired-btn payment-method-btn" data-method="crypto" type="button" data-original-text="💳 Pay with Crypto (USDT)">
+                            💳 Pay with Crypto (USDT)
+                        </button>
+                        <button class="chat-expired-btn payment-method-btn" data-method="card" type="button" data-original-text="🏦 Pay with Card">
+                            🏦 Pay with Card
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-avatar" aria-hidden="true">🇺🇸</div>
+                    <div>
+                        <div class="message-content">
+                            Hey! I'm your Crypto AI Assistant powered by Mistral AI 🚀 I understand all crypto terms, slang, and even "dumb" questions! Ask me anything about Bitcoin, DeFi, NFTs, trading, security, or crypto culture (HODL, FOMO, FUD, moon, lambo, degen, WAGMI)!
+                        </div>
+                        <div class="quick-questions">
+                            <button class="quick-question-btn" data-question="What is HODL?">What is HODL?</button>
+                            <button class="quick-question-btn" data-question="Explain DeFi">Explain DeFi</button>
+                            <button class="quick-question-btn" data-question="What is a whale?">What is a whale?</button>
+                            <button class="quick-question-btn" data-question="Wen moon?">Wen moon? 🚀</button>
+                            <button class="quick-question-btn" data-question="What are rug pulls?">Rug pulls?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Ask about crypto..." autocomplete="off">
+                    <button class="send-button" id="sendButton" aria-label="Send message">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/chatbot.js?v=19" defer></script>
+</body>
+</html>
