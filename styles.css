@@ -8,11 +8,12 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-image: url('assets/crypto-academy-bg-v2.png');
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 1750px 9000px;
-    background-attachment: scroll;
+    /* Фон временно отключён — страница грузится мгновенно; раскомментируй строки ниже для картинки */
+    /* background-image: url('assets/crypto-academy-bg-v2.png'); */
+    /* background-repeat: no-repeat; */
+    /* background-position: center top; */
+    /* background-size: 1750px 9000px; */
+    /* background-attachment: scroll; */
     background-color: #000000;
     min-height: 100vh;
     position: relative;
