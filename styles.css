@@ -77,31 +77,116 @@ body::after {
     font-weight: 700;
 }
 
-/* Hero: одно слово, янтарное свечение */
-.hero-word {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(80px, 18vw, 175px);
+/* Hero: контейнер и каскад появления */
+.hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+
+.hero-title {
+    font-family: 'Raleway', 'Manrope', sans-serif;
+    font-size: clamp(32px, 6vw, 56px);
     font-weight: 700;
     line-height: 1.2;
-    text-align: center;
     color: #fff;
     margin: 0;
-    text-shadow: 0 0 20px rgba(255, 191, 0, 0.6),
-                 0 0 40px rgba(255, 191, 0, 0.4),
-                 0 0 60px rgba(255, 191, 0, 0.3);
-    animation: amberGlow 3s ease-in-out infinite;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
+                 0 0 24px rgba(255, 191, 0, 0.5),
+                 0 0 48px rgba(255, 191, 0, 0.35);
+    animation: heroFadeUp 0.9s ease-out 0.1s both, amberGlow 4.5s ease-in-out 1s infinite;
+}
+
+.hero-subtitle {
+    font-family: 'Manrope', 'Poppins', sans-serif;
+    font-size: clamp(16px, 2.2vw, 22px);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    animation: heroFadeUp 0.9s ease-out 0.3s both;
+}
+
+.hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 8px 0;
+}
+
+.hero-tag {
+    font-family: 'Manrope', 'Poppins', sans-serif;
+    font-size: clamp(14px, 1.8vw, 18px);
+    font-weight: 700;
+    color: #fff;
+    padding: 10px 20px;
+    background: rgba(255, 193, 7, 0.15);
+    border: 1px solid rgba(255, 191, 0, 0.4);
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    cursor: default;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    animation: heroFadeUp 0.9s ease-out 0.5s both;
+}
+
+.hero-tag:nth-child(1) { animation-delay: 0.5s; }
+.hero-tag:nth-child(2) { animation-delay: 0.65s; }
+.hero-tag:nth-child(3) { animation-delay: 0.8s; }
+.hero-tag:nth-child(4) { animation-delay: 0.95s; }
+
+.hero-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 193, 7, 0.2);
+    background: rgba(255, 193, 7, 0.25);
+    border-color: rgba(255, 191, 0, 0.6);
+}
+
+.hero-line1 {
+    font-family: 'Manrope', 'Poppins', sans-serif;
+    font-size: clamp(15px, 1.9vw, 19px);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    animation: heroFadeUp 0.9s ease-out 0.7s both;
+}
+
+.hero-line2 {
+    font-family: 'Manrope', 'Poppins', sans-serif;
+    font-size: clamp(14px, 1.7vw, 17px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    animation: heroFadeUp 0.9s ease-out 0.9s both;
+}
+
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes amberGlow {
     0%, 100% {
-        text-shadow: 0 0 20px rgba(255, 191, 0, 0.6),
-                     0 0 40px rgba(255, 191, 0, 0.4),
-                     0 0 60px rgba(255, 191, 0, 0.3);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
+                     0 0 24px rgba(255, 191, 0, 0.5),
+                     0 0 48px rgba(255, 191, 0, 0.35);
     }
     50% {
-        text-shadow: 0 0 30px rgba(255, 191, 0, 0.9),
-                     0 0 60px rgba(255, 191, 0, 0.6),
-                     0 0 90px rgba(255, 191, 0, 0.4);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
+                     0 0 32px rgba(255, 191, 0, 0.75),
+                     0 0 64px rgba(255, 191, 0, 0.45);
     }
 }
 
@@ -749,8 +834,30 @@ html {
         padding: 40px 16px;
     }
 
-    .hero h1 {
-        font-size: 26px;
+    .hero-inner {
+        gap: 18px;
+    }
+
+    .hero-title {
+        font-size: clamp(26px, 8vw, 34px);
+    }
+
+    .hero-subtitle {
+        font-size: 15px;
+    }
+
+    .hero-tags {
+        gap: 8px;
+    }
+
+    .hero-tag {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .hero-line1,
+    .hero-line2 {
+        font-size: 14px;
     }
 
     .section-header h2 {
