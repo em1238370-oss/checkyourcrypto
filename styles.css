@@ -58,6 +58,10 @@ body::after {
     text-align: center;
     padding: 60px 20px;
     min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 55%),
+                linear-gradient(180deg, #0a0a0c 0%, #0d0e12 100%);
 }
 
 .scroll-section {
@@ -77,7 +81,7 @@ body::after {
     font-weight: 700;
 }
 
-/* Hero: контейнер и каскад появления */
+/* Hero: минимализм — только белое/серое, без золота */
 .hero-inner {
     max-width: 900px;
     margin: 0 auto;
@@ -86,29 +90,48 @@ body::after {
     align-items: center;
     gap: 24px;
     text-align: center;
+    padding: 48px 32px 56px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(220, 225, 235, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    animation: heroInnerEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0s both;
+}
+
+@keyframes heroInnerEnter {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-title {
-    font-family: 'Raleway', 'Manrope', sans-serif;
+    font-family: 'Syne', 'Raleway', sans-serif;
     font-size: clamp(32px, 6vw, 56px);
     font-weight: 700;
     line-height: 1.2;
-    color: #fff;
+    letter-spacing: -0.03em;
     margin: 0;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
-                 0 0 24px rgba(255, 191, 0, 0.5),
-                 0 0 48px rgba(255, 191, 0, 0.35);
-    animation: heroFadeUp 0.9s ease-out 0.1s both, amberGlow 4.5s ease-in-out 1s infinite;
+    color: rgba(255, 255, 255, 0.96);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    animation: heroFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
 }
 
 .hero-subtitle {
     font-family: 'Manrope', 'Poppins', sans-serif;
     font-size: clamp(16px, 2.2vw, 22px);
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.6);
     margin: 0;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-    animation: heroFadeUp 0.9s ease-out 0.3s both;
+    animation: heroFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
 }
 
 .hero-tags {
@@ -122,71 +145,56 @@ body::after {
 .hero-tag {
     font-family: 'Manrope', 'Poppins', sans-serif;
     font-size: clamp(14px, 1.8vw, 18px);
-    font-weight: 700;
-    color: #fff;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
-    background: rgba(255, 193, 7, 0.15);
-    border: 1px solid rgba(255, 191, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 999px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    background: transparent;
     cursor: default;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-    animation: heroFadeUp 0.9s ease-out 0.5s both;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+    animation: heroFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.36s both;
 }
 
-.hero-tag:nth-child(1) { animation-delay: 0.5s; }
-.hero-tag:nth-child(2) { animation-delay: 0.65s; }
-.hero-tag:nth-child(3) { animation-delay: 0.8s; }
-.hero-tag:nth-child(4) { animation-delay: 0.95s; }
+.hero-tag:nth-child(1) { animation-delay: 0.36s; }
+.hero-tag:nth-child(2) { animation-delay: 0.42s; }
+.hero-tag:nth-child(3) { animation-delay: 0.48s; }
+.hero-tag:nth-child(4) { animation-delay: 0.54s; }
 
 .hero-tag:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(255, 193, 7, 0.2);
-    background: rgba(255, 193, 7, 0.25);
-    border-color: rgba(255, 191, 0, 0.6);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-line1 {
     font-family: 'Manrope', 'Poppins', sans-serif;
     font-size: clamp(15px, 1.9vw, 19px);
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
     margin: 0;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
-    animation: heroFadeUp 0.9s ease-out 0.7s both;
+    animation: heroFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.48s both;
 }
 
 .hero-line2 {
     font-family: 'Manrope', 'Poppins', sans-serif;
     font-size: clamp(14px, 1.7vw, 17px);
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.5);
     margin: 0;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    animation: heroFadeUp 0.9s ease-out 0.9s both;
+    animation: heroFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
 }
 
 @keyframes heroFadeUp {
     from {
         opacity: 0;
-        transform: translateY(32px);
+        transform: translateY(22px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes amberGlow {
-    0%, 100% {
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
-                     0 0 24px rgba(255, 191, 0, 0.5),
-                     0 0 48px rgba(255, 191, 0, 0.35);
-    }
-    50% {
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
-                     0 0 32px rgba(255, 191, 0, 0.75),
-                     0 0 64px rgba(255, 191, 0, 0.45);
     }
 }
 
@@ -831,11 +839,15 @@ html {
 /* Responsive design */
 @media (max-width: 600px) {
     .hero {
-        padding: 40px 16px;
+        padding: 40px 24px;
     }
 
     .hero-inner {
-        gap: 18px;
+        gap: 24px;
+        padding: 40px 28px 48px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .hero-title {
@@ -847,7 +859,7 @@ html {
     }
 
     .hero-tags {
-        gap: 8px;
+        gap: 10px;
     }
 
     .hero-tag {
